@@ -29,19 +29,19 @@ node {
         string(name: 'portMapped',
                description: 'Port number to map portApplication to',
                defaultValue: '*')
-        string(name: 'fileConfig',
+        string(name: 'folderConfig',
                description: 'Location of config file on host device',
-               defaultValue: '~/config/jarvis/config_server.json')
-        string(name: 'fileLog',
-               description: 'Location of log file on host device',
-               defaultValue: '~/logs/jarvis.server.log')
+               defaultValue: '~/config/jarvis/folderConfig/')
+        string(name: 'folderLog',
+               description: 'Location of log directory on host device',
+               defaultValue: '~/logs/jarvis.server/')
         //
         //
         build_args = ["--build-arg portApplication=${params.portApplication}"].join(" ")
         //
         //
-        docker_volumes = ["-v ${params.fileConfig}:/jarvis.server/config/bindings/config.json",
-                          "-v ${params.fileLog}:/jarvis.server/log/server.log"].join(" ")
+        docker_volumes = ["-v ${params.folderConfig}:/jarvis.server/config/config_files/",
+                          "-v ${params.folderLog}:/jarvis.server/log/logfiles/"].join(" ")
         //
         //
         deployLogin = "${params.deploymentUsername}@${params.deploymentServer}"
