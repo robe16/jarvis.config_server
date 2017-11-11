@@ -11,6 +11,6 @@ def broadcast_service(host_port):
     my_ip = gethostbyname(gethostname())
 
     while True:
-        data = server_broadcastCode + my_ip + ':' + host_port
+        data = server_broadcastCode + my_ip + ':' + str(host_port)
         s.sendto(data, ('<broadcast>', server_broadcastPort))
         sleep(broadcast_frequency)
