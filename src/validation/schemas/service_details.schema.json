@@ -1,0 +1,6 @@
+{
+  "id": {"type": "string"},
+  "ipaddress": {"type": "string"},
+  "port": {"type": "integar"},
+  "required": ["id", "ipaddress", "port"]
+}

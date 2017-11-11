@@ -3,9 +3,8 @@ import json
 import os
 
 
-# TODO
-def validate__todo__(inpt):
-    schema = _get_schema('-')
+def validate_service_details(inpt):
+    schema = _get_schema('service_details')
     return _validate_schema(inpt, schema)
 
 

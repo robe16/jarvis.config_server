@@ -16,8 +16,8 @@ logCategoryProcess = 'process'
 
 timeformat = '%Y/%m/%d %H.%M.%S.%f'
 
-uri_configDevice = '/config/device/<id>'
-uri_configAccount = '/config/account/<id>'
+uri_configServices = 'config/services'
+uri_configService = '/config/service/<id>'
 
 httpStatusSuccess = 200
 httpStatusBadrequest = 400
