@@ -12,5 +12,6 @@ def broadcast_service(host_port):
 
     while True:
         data = server_broadcastCode + my_ip + ':' + str(host_port)
+        data = bytes(data, "utf-8")
         s.sendto(data, ('<broadcast>', server_broadcastPort))
         sleep(broadcast_frequency)
