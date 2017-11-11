@@ -1,8 +1,10 @@
 config.json
+config_structure.json
 config_services.json
 config_users.json
 
 config.txt
+config_structure.txt
 config_services.txt
 config_users.txt
 
