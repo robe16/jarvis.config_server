@@ -1,4 +1,6 @@
 config.json
+config_services.json
+config_users.json
 *.log
 
 # Byte-compiled / optimized / DLL files
