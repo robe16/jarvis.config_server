@@ -12,8 +12,6 @@ node {
 
     stage("parameters") {
         //
-        String portApplication = '1600'
-        //
         // Parameters passed through from the Jenkins Pipeline configuration
         //
         string(name: 'githubUrl',
@@ -30,7 +28,7 @@ node {
                defaultValue: '*')
         string(name: 'portMapped',
                description: 'Port number to map portApplication to',
-               defaultValue: '1600')
+               defaultValue: '*')
         string(name: 'fileConfig',
                description: 'Location of config file on host device',
                defaultValue: '~/config/jarvis/config_server.json')
@@ -50,7 +48,7 @@ node {
         //
     }
 
-    if (params["deploymentServer"]!="*" && params["deploymentUsername"]!="*") {
+    if (params["deploymentServer"]!="*" && params["deploymentUsername"]!="*" && params["portMapped"]!="*") {
 
         stage("checkout") {
             git url: "${params.githubUrl}"
@@ -91,11 +89,11 @@ node {
             // Stop existing container if running
             sh "ssh ${deployLogin} \"docker rm -f ${params.appName} && echo \"container ${params.appName} removed\" || echo \"container ${params.appName} does not exist\"\""
             // Start new container
-            sh "ssh ${deployLogin} \"docker run --restart unless-stopped -d ${docker_volumes} -p ${params.portMapped}:${portApplication} --name ${params.appName} ${docker_img_name_latest}\""
+            sh "ssh ${deployLogin} \"docker run --restart unless-stopped -d ${docker_volumes} -p ${params.portMapped}:1600 --name ${params.appName} ${docker_img_name_latest}\""
         }
 
     } else {
-        echo "Build cancelled as required parameter values not provided by pipeline configuration"
+        error("Build cancelled as required parameter values not provided by pipeline configuration")
     }
 
 }

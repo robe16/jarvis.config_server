@@ -1,3 +1,6 @@
+import sys
+from multiprocessing import Process
+from discovery.broadcast import broadcast_service
 from portlistener import start_bottle
 from resources.global_resources.variables import *
 from log.log import Log
@@ -7,12 +10,29 @@ _log = Log()
 
 try:
 
+    ################################
+    # Receive sys arguments
+
+    # Argument 1: Port of self exposed on host
+    try:
+        host_port = sys.argv[1]
+    except:
+        raise Exception('host_port not available')
+
     _log.new_entry(logCategoryProcess, '-', 'Starting micro service', '-', 'starting')
 
     ################################
-    # As micro service will be containerised, a hard-coded port (1600) will be
-    # used, and this will be mapped to as part of container build/deployment.
-    self_port = 1600
+    # Receive sys arguments
+
+    _log.new_entry(logCategoryProcess, '-', 'Service discovery broadcaster',
+                   'port-{port}'.format(port=server_broadcastPort), 'starting')
+
+    process_broadcast = Process(target=broadcast_service, args=(host_port,))
+    process_broadcast.start()
+
+    _log.new_entry(logCategoryProcess, '-', 'Service discovery broadcaster',
+                   'port-{port}'.format(port=server_broadcastPort), 'started')
+
 
     ################################
     # Port_listener
