@@ -16,10 +16,10 @@ node {
         //
         string(name: 'githubUrl',
                description: 'GitHub URL for checking out project',
-               defaultValue: 'https://github.com/robe16/jarvis.server.git')
+               defaultValue: 'https://github.com/robe16/jarvis.config_server.git')
         string(name: 'appName',,
                description: 'Name of application for Docker image and container'
-               defaultValue: 'jarvis.server')
+               defaultValue: 'jarvis.config_server')
         string(name: 'deploymentServer',
                description: 'Server to deploy the Docker container',
                defaultValue: '*')
@@ -27,14 +27,14 @@ node {
                description: 'Username for the server the Docker container will be deployed to (used for ssh/scp)',
                defaultValue: '*')
         string(name: 'portMapped',
-               description: 'Port number to map portApplication to',
+               description: 'Port number to map internal docker port used by application to',
                defaultValue: '*')
         string(name: 'folderConfig',
-               description: 'Location of config file on host device',
+               description: 'Location of config directory on host device',
                defaultValue: '~/config/jarvis/folderConfig/')
         string(name: 'folderLog',
                description: 'Location of log directory on host device',
-               defaultValue: '~/logs/jarvis.server/')
+               defaultValue: '~/logs/jarvis.config_server/')
         //
         //
         build_args = ["--build-arg portApplication=${params.portApplication}"].join(" ")
