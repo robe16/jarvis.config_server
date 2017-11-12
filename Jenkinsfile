@@ -18,7 +18,7 @@ node {
         string(name: 'githubUrl',
                description: 'GitHub URL for checking out project',
                defaultValue: 'https://github.com/robe16/jarvis.config_server.git')
-        string(name: 'appName',,
+        string(name: 'appName',
                description: 'Name of application for Docker image and container',
                defaultValue: 'jarvis.config_server')
         string(name: 'deploymentServer',
