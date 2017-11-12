@@ -7,10 +7,10 @@ ARG portApplication
 # Update
 RUN apt-get update && apt-get install -y python python-pip
 
-WORKDIR /jarvis/server
+WORKDIR /jarvis/config_server
 
 # Bundle app source
-COPY src /jarvis/server
+COPY src /jarvis/config_server
 
 # Copy app dependencies
 COPY requirements.txt requirements.txt

@@ -40,8 +40,8 @@ node {
         build_args = ["--build-arg portApplication=${params.portApplication}"].join(" ")
         //
         //
-        docker_volumes = ["-v ${params.folderConfig}:/jarvis.server/config/config_files/",
-                          "-v ${params.folderLog}:/jarvis.server/log/logfiles/"].join(" ")
+        docker_volumes = ["-v ${params.folderConfig}:/jarvis.config_server/config/config_files/",
+                          "-v ${params.folderLog}:/jarvis.config_server/log/logfiles/"].join(" ")
         //
         //
         deployLogin = "${params.deploymentUsername}@${params.deploymentServer}"
