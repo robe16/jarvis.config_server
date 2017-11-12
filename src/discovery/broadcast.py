@@ -1,7 +1,7 @@
 from time import sleep
 from socket import socket, AF_INET, SOCK_DGRAM, SOL_SOCKET, SO_BROADCAST, gethostbyname, gethostname
 from paramters import broadcast_frequency
-from resources.global_resources.variables import server_broadcastPort, server_broadcastCode
+from resources.global_resources.variables import jarvis_broadcastPort, server_broadcastCode
 
 
 def broadcast_service(host_port):
@@ -13,5 +13,5 @@ def broadcast_service(host_port):
     while True:
         data = server_broadcastCode + my_ip + ':' + str(host_port)
         data = bytes(data, "utf-8")
-        s.sendto(data, ('<broadcast>', server_broadcastPort))
+        s.sendto(data, ('<broadcast>', jarvis_broadcastPort))
         sleep(broadcast_frequency)
