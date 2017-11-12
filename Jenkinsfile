@@ -4,6 +4,7 @@ String commit_id
 String build_args
 String deployLogin
 String docker_img_name
+String portApplication
 def docker_img
 
 node {
@@ -18,7 +19,7 @@ node {
                description: 'GitHub URL for checking out project',
                defaultValue: 'https://github.com/robe16/jarvis.config_server.git')
         string(name: 'appName',,
-               description: 'Name of application for Docker image and container'
+               description: 'Name of application for Docker image and container',
                defaultValue: 'jarvis.config_server')
         string(name: 'deploymentServer',
                description: 'Server to deploy the Docker container',
@@ -37,7 +38,10 @@ node {
                defaultValue: '~/logs/jarvis.config_server/')
         //
         //
-        build_args = ["--build-arg portApplication=${params.portApplication}"].join(" ")
+        portApplication = "1600"
+        //
+        //
+        build_args = ["--build-arg portApplication=${portApplication}"].join(" ")
         //
         //
         docker_volumes = ["-v ${params.folderConfig}:/jarvis.config_server/config/config_files/",
@@ -89,7 +93,7 @@ node {
             // Stop existing container if running
             sh "ssh ${deployLogin} \"docker rm -f ${params.appName} && echo \"container ${params.appName} removed\" || echo \"container ${params.appName} does not exist\"\""
             // Start new container
-            sh "ssh ${deployLogin} \"docker run --restart unless-stopped -d ${docker_volumes} -p ${params.portMapped}:1600 --name ${params.appName} ${docker_img_name_latest}\""
+            sh "ssh ${deployLogin} \"docker run --restart unless-stopped -d ${docker_volumes} -p ${params.portMapped}:${portApplication} --name ${params.appName} ${docker_img_name_latest}\""
         }
 
     } else {

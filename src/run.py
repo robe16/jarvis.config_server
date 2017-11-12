@@ -13,9 +13,15 @@ try:
     ################################
     # Receive sys arguments
 
-    # Argument 1: Port of self exposed on host
+    # Argument 1: Port application listens on
     try:
-        host_port = sys.argv[1]
+        self_port = sys.argv[1]
+    except:
+        raise Exception('self_port not available')
+
+    # Argument 2: Port of self exposed on host
+    try:
+        host_port = sys.argv[2]
     except:
         raise Exception('host_port not available')
 

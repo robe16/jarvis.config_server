@@ -25,9 +25,5 @@ httpStatusForbidden = 404
 httpStatusFailure = 420
 httpStatusServererror = 500
 
-# As micro service will be containerised, a hard-coded port (1600) will be
-# used, and this will be mapped to as part of container build/deployment.
-self_port = 1600
-
 server_broadcastPort = 5000
 server_broadcastCode = "jarvis_server"
