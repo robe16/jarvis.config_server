@@ -32,10 +32,10 @@ node {
                defaultValue: '*')
         string(name: 'folderConfig',
                description: 'Location of config directory on host device',
-               defaultValue: '~/config/jarvis/folderConfig/')
+               defaultValue: '~/config/jarvis/config_server/')
         string(name: 'folderLog',
                description: 'Location of log directory on host device',
-               defaultValue: '~/logs/jarvis.config_server/')
+               defaultValue: '~/logs/jarvis/config_server/')
         //
         //
         portApplication = "1600"
